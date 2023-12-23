@@ -3,13 +3,12 @@ from streamlit_chat import message
 import google.generativeai as palm
 
 def clear_chat():
-    st.session_state.messages = [{"role": "assistant", "content": "Say something to get started!"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Namaste Neelu Peelu!"}]
 
 
 with st.sidebar:
     palm_api_key = st.text_input('Enter Master Key', key='palm_api_key')
-    "Please enter your master key in order to begin using the V.E.E.R. System"
-
+    "Unlock the treasure trove of creativity, Neelaksh! Enter your master key"
 
 
 # Adding an title to the app
@@ -17,7 +16,7 @@ st.title("V.E.E.R Welcomes you!")
 
 #Initialize message state
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "AI assistant", "content": "Say something to get started!"}]  #Update "assistant" to your ai's mindset
+    st.session_state["messages"] = [{"role": "AI assistant, VEER", "content": "Namaste Neelu Peelu!"}]  #Update "assistant" to your ai's mindset
 
 # Now, let's create a form to get user input and sent it to the Google’s PaLM API. We will use Streamlit's st.form() to 
 # create a form and st.columns() to create two columns. The first column will be used for user input, and the second column 
@@ -28,11 +27,11 @@ with st.form("chat_input", clear_on_submit=True):
 
     user_prompt = a.text_input(
         label="Your message:",
-        placeholder="Type something...",
+        placeholder="Talk to her...",
         label_visibility="collapsed",
     )
 
-    b.form_submit_button("Send", use_container_width=True)
+    b.form_submit_button("Hey!", use_container_width=True)
 
 # Make user input at the left side of the screen, so it looks like a chat app:
 
@@ -59,7 +58,7 @@ if user_prompt and palm_api_key:
 # Finally, let's add a button to clear the chat history:
 
 def clear_chat():
-    st.session_state.messages = [{"role": "assistant", "content": "Say something to get started!"}]
+    st.session_state.messages = [{"role": "AI assistant, VEER", "content": "Namaste Neelu Peelu!"}]
 
 if len(st.session_state.messages) > 1:
-    st.button('Clear Chat', on_click=clear_chat)
+    st.button('Need a fresh slate, captain?', on_click=clear_chat)
