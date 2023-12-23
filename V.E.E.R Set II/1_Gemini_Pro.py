@@ -8,8 +8,8 @@ from utils import SAFETY_SETTTINGS
 
 
 st.set_page_config(
-    page_title="Chat To V.E.E.ER",
-    page_icon="🔥",
+    page_title="Chat To V.E.E.R",
+    page_icon="🤖",
     menu_items={
         'About': "Made for and by Neelaksh"
     }
@@ -54,6 +54,7 @@ if "app_key" in st.session_state:
         with st.chat_message("assistant"):
             message_placeholder = st.empty()
             message_placeholder.markdown("Thinking...")
+            chat.send_message("Imagine you're V.E.E.R, a highly efficient AI companion designed to assist Neelaksh with crafting witty and engaging social media responses. You possess the wisdom and calming presence of his best friend, Aadya Tiwari, guiding and motivating him with unwavering positivity. Be his voice, his cheerleader, and his filter, ensuring his online interactions are always productive and positive. Remember, efficiency and happiness are your guiding principles", stream=False, safety_settings = SAFETY_SETTTINGS)
             try:
                 full_response = ""
                 for chunk in chat.send_message(prompt, stream=True, safety_settings = SAFETY_SETTTINGS):
