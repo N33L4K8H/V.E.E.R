@@ -6,8 +6,8 @@ import random
 from utils import SAFETY_SETTTINGS
 
 st.set_page_config(
-    page_title="Chat To XYthing",
-    page_icon="🔥",
+    page_title="Show me Pictures",
+    page_icon="📷",
     menu_items={
         'About': "# Make by hiliuxg"
     }
@@ -16,7 +16,7 @@ st.set_page_config(
 st.title('Upload Image And Ask')
 
 if "app_key" not in st.session_state:
-    app_key = st.text_input("Your Gemini App Key", type='password')
+    app_key = st.text_input("Your Root Key", type='password')
     if app_key:
         st.session_state.app_key = app_key
 
@@ -24,7 +24,7 @@ try:
     genai.configure(api_key = st.session_state.app_key)
     model = genai.GenerativeModel('gemini-pro-vision')
 except AttributeError as e:
-    st.warning("Please Put Your Gemini App Key First.")
+    st.warning("Please Put Your Root Key First.")
 
 
 def show_message(prompt, image, loading_str):
@@ -67,26 +67,20 @@ if "app_key" in st.session_state:
         st.image(image)    
 
 if len(st.session_state.history_pic) == 0 and image is not None:
-    prompt = """##### 角色
-你是一位出色的影像解读者，擅长从图片中解读细节并能为其创作详尽的描述。你也会提供三个问题，引导用户向你提问题。
-##### 任务
-###### 任务1: 图片解读和描述
-- 分析图片，挖掘图片背后的故事以及图片展现出来的氛围和意境。
-- 基于图片内容，创作出详尽、引人入胜的文字描述。
-###### 任务2: 创建问题
-- 基于图片内容，背后的故事以及图片展现出来的氛围和意境，提供三个问题，助用户更好的向你提问。
-- 问题类别包括但不限于如何基于该图片创作故事、生成微信朋友圈描述、微信公众号文章，小红书推文或商品详细页面。
-##### 要求
-- 描述与图片应紧密相连，不偏离图片本身的内容。
-- 描述应尽可能详实，使读者能通过文字理解图片的魅力。
-##### 输出格式
-<写入图片描述>
-
-接下来，您可以向我提问以下问题：
-1. <写入问题1>
-2. <写入问题2>
-3. <写入问题3>"""
-    show_message(prompt, image, "Reading the image...")
+    prompt = """
+You are an excellent image interpreter, adept at deciphering details from images and 
+creating detailed descriptions of them. You will also provide three questions to guide users to 
+ask you questions.
+Task 1: Image Interpretation and Description
+- Analyze pictures and discover the stories behind them as well as the atmosphere and artistic conception displayed by the pictures.
+- Create detailed and engaging text descriptions based on image content.
+Task 2: Create a question
+- Based on the picture content, the story behind it, and the atmosphere and artistic conception 
+displayed by the picture, three questions are provided to help users better ask you questions.
+Require
+- The description should be closely linked to the image and should not deviate from the content of the image itself.
+- The description should be as detailed as possible so that readers can understand the charm of the picture through words"""
+    show_message(prompt, image, "Dekh raha hun...")
     
 else:
     for item in st.session_state.history_pic:
