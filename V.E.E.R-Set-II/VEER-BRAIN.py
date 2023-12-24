@@ -1,5 +1,3 @@
-
-
 import google.generativeai as genai
 import streamlit as st
 import time
@@ -20,7 +18,7 @@ st.caption("A Generative AI, V.E.E.R, that is your personal assistant. Based on 
 
 
 if "app_key" not in st.session_state:
-    app_key = st.text_input("Your Gemini Key", type='password')
+    app_key = st.text_input("Your Root Key", type='password')
     if app_key:
         st.session_state.app_key = app_key
 
@@ -30,7 +28,7 @@ if "history" not in st.session_state:
 try:
     genai.configure(api_key = st.session_state.app_key)
 except AttributeError as e:
-    st.warning("Please Put Your Gemini App Key First.")
+    st.warning("Please Put Your Root Key First.")
 
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat(history = st.session_state.history)
