@@ -3,7 +3,7 @@ import streamlit as st
 import time
 import random
 from utils import SAFETY_SETTTINGS
-from elevenlabs import generate, play
+from elevenlabs import generate, play,set_api_key
 
 st.set_page_config(
     page_title="Chat To V.E.E.R",
@@ -66,12 +66,13 @@ if "app_key" in st.session_state:
                             message_placeholder.markdown(full_response + "_")
                             word_count = 0
                             random_int = random.randint(5, 10)
+                set_api_key("076a5a4a6d897a09c511380398ffaf42")
                 message_placeholder.markdown(full_response)
                 audio = generate(full_response,
                                  voice="Bella",
                                  model="eleven_multilingual_v2")
                 # Add a button to play the audio
-                message.button("Play", on_click=play(full_response))
+                st.button("Play", on_click=play(full_response))
             except genai.types.generation_types.BlockedPromptException as e:
                 st.exception(e)
             except Exception as e:
