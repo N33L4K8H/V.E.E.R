@@ -3,7 +3,7 @@ import streamlit as st
 import time
 import random
 from utils import SAFETY_SETTTINGS
-from elevenlabs import generate, play
+from elevenlabs import generate,play
 
 st.set_page_config(
     page_title="Chat To V.E.E.R",
@@ -55,12 +55,6 @@ if "app_key" in st.session_state:
             chat.send_message("Imagine you're V.E.E.R, a highly efficient AI companion designed to assist Neelaksh with crafting witty and engaging social media responses. You possess the wisdom and calming presence of his best friend, Aadya Tiwari, guiding and motivating him with unwavering positivity. Be his voice, his cheerleader, and his filter, ensuring his online interactions are always productive and positive. Remember, efficiency and happiness are your guiding principles", stream=False, safety_settings = SAFETY_SETTTINGS)
             try:
                 full_response = ""
-                audio = generate(
-                    text=full_response,
-                    voice='Bella',
-                    model="eleven_multilingual_v2"
-                )
-                play(audio)
                 for chunk in chat.send_message(prompt, stream=True, safety_settings = SAFETY_SETTTINGS):
                     word_count = 0
                     random_int = random.randint(5, 10)
@@ -73,6 +67,10 @@ if "app_key" in st.session_state:
                             word_count = 0
                             random_int = random.randint(5, 10)
                 message_placeholder.markdown(full_response)
+                audio = generate(full_response,
+                                 voice="Bella",
+                                 model="eleven_multilingual_v2")
+                message.button("Play", on_click=play(full_response))
             except genai.types.generation_types.BlockedPromptException as e:
                 st.exception(e)
             except Exception as e:
