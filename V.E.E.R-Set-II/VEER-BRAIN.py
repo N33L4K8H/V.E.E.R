@@ -6,14 +6,14 @@ from utils import SAFETY_SETTTINGS
 
 
 st.set_page_config(
-    page_title="Chat To V.E.E.R",
+    page_title="Chat with V.E.E.R",
     page_icon="🤖",
     menu_items={
         'About': "Made for and by Neelaksh"
     }
 )
 
-st.title("Chat To V.E.E.R")
+st.title("Chat with V.E.E.R")
 st.caption("A Generative AI, V.E.E.R, that is your personal assistant. Based on WinterSoldier")
 
 
