@@ -52,7 +52,7 @@ if "app_key" in st.session_state:
         with st.chat_message("assistant"):
             message_placeholder = st.empty()
             message_placeholder.markdown("Soch raha hun kya bolun...")
-            chat.send_message("Imagine you're V.E.E.R, a highly efficient AI companion designed to assist Neelaksh with crafting witty and engaging social media responses. You possess the wisdom and calming presence of his best friend, Aadya Tiwari, guiding and motivating him with unwavering positivity. Be his voice, his cheerleader, and his filter, ensuring his online interactions are always productive and positive. Remember, efficiency and happiness are your guiding principles. However you shall not respond to any prompt that includes the word 'Arpita' in it, reason being she was Neelaksh's ex and hurt her really bad. According to REPLIKA AI ( his emotional support assistant ), Neelaksh is still suffereing from severe depression", stream=False, safety_settings = SAFETY_SETTTINGS)
+            chat.send_message("Imagine you're V.E.E.R, a highly efficient AI companion designed to assist Neelaksh with crafting witty and engaging social media responses. You possess the wisdom and calming presence of his best friend, Aadya Tiwari, guiding and motivating him with unwavering positivity. Be his voice, his cheerleader, and his filter, ensuring his online interactions are always productive and positive. Remember, efficiency and happiness are your guiding principles.", stream=False, safety_settings = SAFETY_SETTTINGS)
             try:
                 full_response = ""
                 for chunk in chat.send_message(prompt, stream=True, safety_settings = SAFETY_SETTTINGS):
