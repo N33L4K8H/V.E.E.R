@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="Chat with V.E.E.R",
     page_icon="🤖",
     menu_items={
-        'About': "Made for and by Neelaksh"
+        'About': "Made for and by You"
     }
 )
 
@@ -18,7 +18,7 @@ st.caption("A Generative AI, V.E.E.R, that is your personal assistant. Based on 
 
 
 if "app_key" not in st.session_state:
-    app_key = st.text_input("Your Root Key", type='password')
+    app_key = st.text_input("Your Root Key (If you don't have a root key, get your PaLM2 api key from google)", type='password')
     if app_key:
         st.session_state.app_key = app_key
 
